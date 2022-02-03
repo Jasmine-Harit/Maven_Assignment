@@ -3,19 +3,19 @@ pipeline {
     agent any
 
     stages {
-        stage('mvn install') {
+        stage('Build') {
             steps {
-                echo 'installing..'
+                sh 'mvn install''
             }
         }
-        stage('mvn test') {
+        stage('Test') {
             steps {
-                echo 'Testing..'
+                sh 'mvn test'
             }
         }
-        stage('mvn deploy') {
+        stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                sh 'mvn run build'
             }
         }
     }
