@@ -1,0 +1,28 @@
+// Declarative //
+pipeline {
+    agent any
+
+    stages {
+        stage('mvn install') {
+            steps {
+                echo 'installing..'
+            }
+        }
+        stage('mvn test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('mvn deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
+
+// Script //
+node {
+    checkout scm 
+    /* .. snip .. */
+}
