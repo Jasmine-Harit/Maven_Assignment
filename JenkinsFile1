@@ -3,6 +3,9 @@ pipeline {
     agent none
     stages {
         stage('Build') {
+            agent {
+                        label "linux"
+                    }
             agent any
             steps {
                 sh 'mvn install'
