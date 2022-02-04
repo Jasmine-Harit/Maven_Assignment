@@ -1,18 +1,24 @@
 // Declarative //
 pipeline {
-    agent any
+    agent none
     stages {
         stage('Build') {
+            agent any
             steps {
                 sh 'mvn install'
             }
         }
-        stage('Test') {
+        stage('Test on Linux') {
+            agent {
+                label 'label'
+            }
             steps {
                 sh 'mvn test'
             }
         }
-        stage('Deploy') {
+        stage('Test on Windows') {
+            agent {
+                label 'windows'
             steps {
                 sh 'mvn run build'
             }
