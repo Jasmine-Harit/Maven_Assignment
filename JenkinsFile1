@@ -3,27 +3,25 @@ pipeline {
     agent none
     stages {
         stage('Build') {
-            agent {
-                        label "linux"
+            parallel {
+               stage('test') {
+               agent {
+                       label "linux"
                     }
-            agent any
-            steps {
-                sh 'mvn install'
-            }
         }
-        stage('Test on Linux') {
+        stage('Test on Docker') {
             agent {
-                label 'label'
+                label 'Docker'
             }
             steps {
-                sh 'mvn test'
+                echo 'test'
             }
         }
         stage('Test on Windows') {
             agent {
                 label 'windows'
             steps {
-                sh 'mvn run build'
+                echo 'run build'
             }
         }
     }
